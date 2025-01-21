@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPTV Website</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/shaka-player.min.js"></script>
+  <script src="./playlist.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const videoElement = document.getElementById("video");
+      const channelList = document.getElementById("channel-list");
+      const player = new shaka.Player(videoElement);
+
+      // Load ClearKey for playback
+      async function loadChannel(channel) {
+        const { url, keys } = channel;
+
+        player.configure({
+          drm: {
+            clearKeys: {
+              [keys.kid]: keys.key,
+            },
+          },
+        });
+
+        try {
+          await player.load(url);
+        } catch (error) {
+          console.error("Error loading channel:", error);
+        }
+      }
+
+      // Populate the channel list
+      playlist.forEach((channel, index) => {
+        const button = document.createElement("button");
+        button.textContent = channel.name;
+        button.onclick = () => loadChannel(channel);
+        channelList.appendChild(button);
+      });
+
+      // Load the first channel by default
+      loadChannel(playlist[0]);
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>IPTV Website</h1>
+    <video id="video" controls autoplay width="100%"></video>
+    <div id="channel-list" class="channel-list"></div>
+  </div>
+</body>
+</html>
