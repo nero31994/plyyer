@@ -21,7 +21,6 @@ body {
   flex-direction: column;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .sidebar h2 {
@@ -29,6 +28,12 @@ body {
   margin-bottom: 20px;
   font-size: 24px;
   text-align: center;
+}
+
+/* Scrollable Channel List */
+.channel-container {
+  flex-grow: 1; /* Takes up remaining height of the sidebar */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .channel-list {
