@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
 }
 
 .main-container {
@@ -10,51 +9,35 @@ body {
 }
 
 .sidebar {
-  width: 25%;
-  background-color: #282c34;
-  color: white;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sidebar h2 {
-  text-align: center;
-  margin: 0 0 10px;
-}
-
-.channel-list-container {
-  flex-grow: 1;
-  overflow-y: auto;
-  border-top: 1px solid #444;
-  padding-top: 10px;
-}
-
-.channel-list-container button {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  background-color: #444;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: left;
-}
-
-.channel-list-container button:hover {
-  background-color: #555;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .content {
-  width: 75%;
-  padding: 20px;
+  flex: 1;
+  position: relative;
 }
 
-video {
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://media3.giphy.com/media/bpmNf92LmkoMw/giphy.gif?cid=6c09b95227ccj2rclaade4zq5ka9otep1ghdtg66vskf4h86&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+#video {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  height: auto;
-  border: 2px solid #ccc;
-  border-radius: 10px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background */
 }
