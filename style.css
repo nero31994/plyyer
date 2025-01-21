@@ -4,11 +4,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f4f4f9;
+  overflow: hidden; /* Prevent body scroll */
 }
 
 .main-container {
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Full height of the viewport */
 }
 
 /* Sidebar Styles */
@@ -20,6 +21,7 @@ body {
   flex-direction: column;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .sidebar h2 {
