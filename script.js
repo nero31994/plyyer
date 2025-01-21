@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         url: 'https://ott.studentsdemo.com/stream/phcathenatv/gtv/master.m3u8?u=phc&p=1ed3395bba4d481a74e631943df9643663da8f300a8edececcb8b7da46349f01',
         type: 'hls'
          }, 
-GMA: {
+ {
         name: 'GMA',
         url: 'https://ott.studentsdemo.com/stream/phcathenatv/gma/master.m3u8?u=phc&p=1ed3395bba4d481a74e631943df9643663da8f300a8edececcb8b7da46349f01',
         type: 'hls'
