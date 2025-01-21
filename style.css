@@ -2,12 +2,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  text-align: center;
   background-color: #f4f4f9;
+  text-align: center;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
   background: #fff;
@@ -19,21 +19,36 @@ h1 {
   margin-bottom: 20px;
 }
 
-video {
-  max-width: 100%;
-  margin-bottom: 20px;
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.channel-list {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .channel-list button {
-  margin: 5px;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
   background: #007bff;
-  color: #fff;
+  color: white;
   cursor: pointer;
 }
 
 .channel-list button:hover {
   background: #0056b3;
+}
+
+video {
+  flex-grow: 1;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: black;
 }
