@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,38 +5,34 @@ html
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>IPTV with Side Navigation</title>
-  
+
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
   <!-- Shaka Player Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.6/shaka-player.compiled.js" defer></script
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.6/shaka-player.compiled.js" defer></script>
+
   <style>
     /* General reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
-   
+      font-family: Arial, sans-serif;
+    }
+
     body {
       display: flex;
-      flex-direction: column;
       height: 100vh;
       background: #1e1e2f;
       color: #fff;
-      background-image: url('background-pattern.png'); /* Optional: Add a background image */
-      background-size: cover;
-   
-    header {
-      background: #29293d;
-      padding: 20px;
-      text-align: center;
-      font-size: 28px;
-      border-bottom: 2px solid #ff5733;
-   
+    }
+
     .main-container {
       display: flex;
-      flex-grow: 1;
       width: 100%;
-   
+    }
+
     /* Sidebar styles */
     .sidebar {
       width: 300px;
@@ -45,36 +40,35 @@ html
       padding: 20px;
       overflow-y: auto;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-   
+    }
+
     .sidebar h2 {
       font-size: 24px;
       margin-bottom: 20px;
       border-bottom: 2px solid #ff5733;
       padding-bottom: 10px;
-   
-    /* Channel list styles */
+    }
+
+    /* Make the channel list scrollable */
     .channel-list {
       list-style: none;
       max-height: 70vh; /* Adjust to desired height */
       overflow-y: auto;
-   
+    }
+
     .channel-list div {
       padding: 15px;
       background: #3c3c57;
       margin-bottom: 10px;
       border-radius: 5px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
       transition: background 0.3s ease;
-   
+    }
+
     .channel-list div:hover {
       background: #ff5733;
-   
-    .channel-list div img {
-      width: 24px; /* Size of the icon */
-      margin-right: 10px; /* Space between icon and text */
-   
+    }
+
     /* Content area styles */
     .content {
       flex-grow: 1;
@@ -82,53 +76,46 @@ html
       align-items: center;
       justify-content: center;
       padding: 20px;
-   
+    }
+
     video {
       width: 90%;
       max-width: 1200px;
       border: 5px solid #ff5733;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 87, 51, 0.5);
-   
-    /* Button styles */
-    .channel-button {
-      background: #ff5733;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 15px;
-      cursor: pointer;
-      margin: 10px;
-      transition: background-color 0.3s ease;
-   
-    .channel-button:hover {
-      background: #e04e29;
-   
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%; /* Full width on smaller screens */
-        padding: 10px;
-     
-      video {
-        width: 100%; /* Full width for video on smaller screens */
-      }
     }
   </style>
 </head>
 <body>
-  <header>
-    IPTV Video Player
-  </header>
-  
   <div class="main-container">
     <!-- Sidebar section for channel navigation -->
     <aside class="sidebar">
       <h2>Channels</h2>
       <nav id="channel-list" class="channel-list" aria-label="Channel List">
-        <div>
-          <img src="icon1.png" alt="Channel 1 Icon"> Channel 1
-        </div>
-        <div>
-          <img src="icon2.png" alt="Channel 2 Icon"> Channel 2
-        </div>
-        <div>
+        <div>Channel 1</div>
+        <div>Channel 2</div>
+        <div>Channel 3</div>
+        <div>Channel 4</div>
+        <div>Channel 5</div>
+        <div>Channel 6</div>
+        <div>Channel 7</div>
+        <div>Channel 8</div>
+        <div>Channel 9</div>
+        <div>Channel 10</div>
+        <!-- Add more channels as needed -->
+      </nav>
+    </aside>
+
+    <!-- Main content section for video playback -->
+    <main class="content">
+      <video id="video" controls autoplay aria-label="IPTV Video Player">
+        Your browser does not support the video tag.
+      </video>
+    </main>
+  </div>
+
+  <!-- External JavaScript file -->
+  <script src="script.js" defer></script>
+</body>
+</html>
