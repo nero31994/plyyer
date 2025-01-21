@@ -5,12 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Playlist with ClearKey DRM
   const playlist = [
-    {
-      name: "GTV",
-      url: "https://ott.studentsdemo.com/stream/phcathenatv/gtv/master.m3u8?u=phc&p=1ed3395bba4d481a74e631943df9643663da8f300a8edececcb8b7da46349f01",
-      kid: "",
-      key: "",
-    },
+
       {
       name: "CCTV 4",
       url: "https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/dr_cctv4.mpd",
