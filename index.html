@@ -5,9 +5,8 @@ html
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>IPTV with Side Navigation</title
-  <!-- Link to external stylesheet -->
-  <link rel="stylesheet" href="style.css
+  <title>IPTV with Side Navigation</title>
+  
   <!-- Shaka Player Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.6/shaka-player.compiled.js" defer></script
   <style>
@@ -24,7 +23,7 @@ html
       height: 100vh;
       background: #1e1e2f;
       color: #fff;
-      background-image: url('background-pattern.png'); /* Add a background image */
+      background-image: url('background-pattern.png'); /* Optional: Add a background image */
       background-size: cover;
    
     header {
@@ -53,7 +52,7 @@ html
       border-bottom: 2px solid #ff5733;
       padding-bottom: 10px;
    
-    /* Make the channel list scrollable */
+    /* Channel list styles */
     .channel-list {
       list-style: none;
       max-height: 70vh; /* Adjust to desired height */
@@ -105,6 +104,15 @@ html
     .channel-button:hover {
       background: #e04e29;
    
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%; /* Full width on smaller screens */
+        padding: 10px;
+     
+      video {
+        width: 100%; /* Full width for video on smaller screens */
+      }
+    }
   </style>
 </head>
 <body>
@@ -117,3 +125,10 @@ html
     <aside class="sidebar">
       <h2>Channels</h2>
       <nav id="channel-list" class="channel-list" aria-label="Channel List">
+        <div>
+          <img src="icon1.png" alt="Channel 1 Icon"> Channel 1
+        </div>
+        <div>
+          <img src="icon2.png" alt="Channel 2 Icon"> Channel 2
+        </div>
+        <div>
