@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPTV with Side Navigation</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.6/shaka-player.compiled.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide Player Show Channels</title>
+    <style>
+        #player {
+            display: block;
+            margin: 20px;
+            background: lightgray;
+            padding: 20px;
+            text-align: center;
+        }
+        #channel-list {
+            display: none;
+            margin: 20px;
+            background: lightblue;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <div class="main-container">
-    <div class="sidebar">
-      <h2>Channels</h2>
-      <div id="channel-list" class="channel-list"></div>
+    <div id="player">
+        <h2>Player</h2>
+        <p>Player is displayed here.</p>
+        <button onclick="showChannels()">Show Channels</button>
     </div>
-    <div class="content">
-      <h1>IPTV Website with ClearKey DRM</h1>
-      <video id="video" controls autoplay></video>
+
+    <div id="channel-list">
+        <h2>Channel List</h2>
+        <ul>
+            <li>Channel 1</li>
+            <li>Channel 2</li>
+            <li>Channel 3</li>
+        </ul>
     </div>
-  </div>
-  <script src="script.js"></script>
+
+    <script>
+        function showChannels() {
+            document.getElementById('player').style.display = 'none';
+            document.getElementById('channel-list').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
