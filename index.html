@@ -26,11 +26,31 @@
       height: 100vh;
       background: #1e1e2f;
       color: #fff;
+      font-size: 16px;
+      flex-direction: column;
+    }
+
+    /* Top login message bar */
+    .login-message {
+      background: #333;
+      padding: 10px;
+      color: #ff5733;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .login-message a {
+      color: #ff5733;
+      text-decoration: underline;
+      margin-left: 10px;
     }
 
     .main-container {
       display: flex;
       width: 100%;
+      min-height: 100vh;
     }
 
     /* Sidebar styles */
@@ -40,20 +60,25 @@
       padding: 20px;
       overflow-y: auto;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .sidebar h2 {
-      font-size: 24px;
+      font-size: 28px;
       margin-bottom: 20px;
       border-bottom: 2px solid #ff5733;
       padding-bottom: 10px;
+      font-weight: bold;
+      color: #ff5733;
     }
 
-    /* Make the channel list scrollable */
     .channel-list {
       list-style: none;
-      max-height: 70vh; /* Adjust to desired height */
+      max-height: 70vh;
       overflow-y: auto;
+      padding-right: 10px;
     }
 
     .channel-list div {
@@ -62,20 +87,25 @@
       margin-bottom: 10px;
       border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .channel-list div:hover {
       background: #ff5733;
+      transform: translateX(10px);
     }
 
-    /* Content area styles */
+    .channel-list div:active {
+      transform: scale(0.98);
+    }
+
     .content {
       flex-grow: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      background: #1e1e2f;
     }
 
     video {
@@ -84,10 +114,56 @@
       border: 5px solid #ff5733;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 87, 51, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    video:hover {
+      transform: scale(1.05);
+    }
+
+    .channel-list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .channel-list::-webkit-scrollbar-thumb {
+      background-color: #ff5733;
+      border-radius: 10px;
+    }
+
+    .channel-list::-webkit-scrollbar-track {
+      background-color: #2a2a3c;
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: 200px;
+      }
+
+      .content {
+        flex-grow: 1;
+        width: 100%;
+        padding: 10px;
+      }
+
+      video {
+        width: 100%;
+        max-width: none;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Login Message -->
+  <div class="login-message">
+    You are logged in as <strong>User123</strong>. 
+    <a href="#">Logout</a>
+  </div>
+
   <div class="main-container">
     <!-- Sidebar section for channel navigation -->
     <aside class="sidebar">
@@ -103,7 +179,7 @@
         <div>Channel 8</div>
         <div>Channel 9</div>
         <div>Channel 10</div>
-        <!-- Add more channels as needed -->
+        <!-- More channels can be added here -->
       </nav>
     </aside>
 
