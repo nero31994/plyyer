@@ -70,7 +70,34 @@ document.addEventListener("DOMContentLoaded", () => {
       url: "https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/cg_a2z.mpd",
       drm: { kid: "f703e4c8ec9041eeb5028ab4248fa094", key: "c22f2162e176eee6273a5d0b68d19530" },
     },
+    {
+      name: "NHK Japan",
+      url: "https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/dr_nhk_japan.mpd",
+      drm: { kid: "3d6e9d4de7d7449aadd846b7a684e564", key: "0800fff80980f47f7ac6bc60b361b0cf" },
+    },
+    {
+      name: "TV5 Monde",
+      url: "https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/dr_tv5_monde.mpd",
+      drm: { kid: "fba5a720b4a541b286552899ba86e38b", key: "f63fa50423148bfcbaa58c91dfcffd0e" },
+    },
+    {
+      name: "UAAP CPlay SD",
+      url: "https://qp-pldt-live-grp-04-prod.akamaized.net/out/u/cg_uaap_cplay_sd.mpd",
+      drm: { kid: "95588338ee37423e99358a6d431324b9", key: "6e0f50a12f36599a55073868f814e81e" },
+    },
+    {
+      name: "Fashion TV HD",
+      url: "https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/dr_fashiontvhd.mpd",
+      drm: { kid: "971ebbe2d887476398e97c37e0c5c591", key: "472aa631b1e671070a4bf198f43da0c7" },
+    },
+    {
+      name: "True FM TV",
+      url: "https://qp-pldt-live-grp-08-prod.akamaized.net/out/u/truefm_tv.mpd",
+      drm: { kid: "0559c95496d44fadb94105b9176c3579", key: "40d8bb2a46ffd03540e0c6210ece57ce" },
+    },
   ];
+
+
 
   // Function to load a selected channel
   async function loadChannel(channel) {
