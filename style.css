@@ -28,7 +28,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('https://media3.giphy.com/media/bpmNf92LmkoMw/giphy.gif?cid=6c09b95227ccj2rclaade4zq5ka9otep1ghdtg66vskf4h86&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g'); /* Replace with your image URL */
+  background-image: url(''); /* Replace with your image URL */
   background-size: cover;
   background-position: center;
   z-index: 1;
