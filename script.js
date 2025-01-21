@@ -24,6 +24,36 @@ document.addEventListener("DOMContentLoaded", () => {
       key: "bdbd38748f51fc26932e96c9a2020839",
     },
     {
+      name: "CNN HD",
+      url: "https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/dr_cnnhd.mpd",
+      kid: "900c43f0e02742dd854148b7a75abbec",
+      key: "da315cca7f2902b4de23199718ed7e90",
+    },
+    {
+      name: "CNN HD",
+      url: "https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/dr_cnnhd.mpd",
+      kid: "900c43f0e02742dd854148b7a75abbec",
+      key: "da315cca7f2902b4de23199718ed7e90",
+    },
+    {
+      name: "CNN HD",
+      url: "https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/dr_cnnhd.mpd",
+      kid: "900c43f0e02742dd854148b7a75abbec",
+      key: "da315cca7f2902b4de23199718ed7e90",
+    },
+    {
+      name: "CNN HD",
+      url: "https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/dr_cnnhd.mpd",
+      kid: "900c43f0e02742dd854148b7a75abbec",
+      key: "da315cca7f2902b4de23199718ed7e90",
+    },
+    {
+      name: "CNN HD",
+      url: "https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/dr_cnnhd.mpd",
+      kid: "900c43f0e02742dd854148b7a75abbec",
+      key: "da315cca7f2902b4de23199718ed7e90",
+    },
+    {
       name: "Thrill SD",
       url: "https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/cg_thrill_sd.mpd",
       kid: "928114ffb2394d14b5585258f70ed183",
