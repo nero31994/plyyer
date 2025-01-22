@@ -6,9 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>IPTV with Side Navigation</title>
 
-  <!-- Link to external stylesheet -->
-  <link rel="stylesheet" href="style.css">
-
   <!-- Shaka Player Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.6/shaka-player.compiled.js" defer></script>
 
@@ -18,54 +15,44 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
     }
 
     body {
       display: flex;
       height: 100vh;
-      background: #1e1e2f;
+      background: linear-gradient(135deg, #2d2d6b, #ff5733);
       color: #fff;
       font-size: 16px;
       flex-direction: column;
+      overflow: hidden;
+      transition: background 0.3s ease;
     }
 
-    /* Top login message bar */
-    .login-message {
-      background: #333;
-      padding: 10px;
-      color: #ff5733;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-      display: none; /* Hide by default */
-    }
-
-    .login-message a {
-      color: #ff5733;
-      text-decoration: underline;
-      margin-left: 10px;
-    }
-
+    /* Main container styles */
     .main-container {
       display: flex;
       width: 100%;
       min-height: 100vh;
+      transition: all 0.3s ease;
     }
 
     /* Sidebar styles */
     .sidebar {
-      width: 300px;
-      background: #29293d;
+      width: 320px;
+      background: #3b3b61;
       padding: 20px;
-      overflow-y: auto;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: width 0.3s ease;
     }
 
+    /* Sidebar title */
     .sidebar h2 {
       font-size: 28px;
       margin-bottom: 20px;
@@ -73,33 +60,56 @@
       padding-bottom: 10px;
       font-weight: bold;
       color: #ff5733;
+      text-shadow: 1px 1px 5px rgba(255, 87, 51, 0.3);
     }
 
+    /* Channel list styling */
     .channel-list {
       list-style: none;
       max-height: 70vh;
       overflow-y: auto;
       padding-right: 10px;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* Card-Like Channel Item Styling */
     .channel-list div {
+      display: flex;
+      align-items: center;
       padding: 15px;
-      background: #3c3c57;
+      background: #4a4a7f;
       margin-bottom: 10px;
-      border-radius: 5px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      font-size: 18px;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-left: 10px;
+      transform: translateX(-10px);
     }
 
+    /* Hover Effects */
     .channel-list div:hover {
       background: #ff5733;
       transform: translateX(10px);
+      box-shadow: 0 15px 25px rgba(255, 87, 51, 0.5);
+      color: white;
     }
 
+    /* Active channel effects */
     .channel-list div:active {
       transform: scale(0.98);
     }
 
+    /* Channel icon */
+    .channel-icon {
+      margin-right: 15px;
+      font-size: 22px;
+    }
+
+    /* Content (video player) area styles */
     .content {
       flex-grow: 1;
       display: flex;
@@ -107,23 +117,50 @@
       justify-content: center;
       padding: 20px;
       background: #1e1e2f;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
     }
 
+    /* Video player styling */
     video {
       width: 90%;
       max-width: 1200px;
       border: 5px solid #ff5733;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 87, 51, 0.5);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 87, 51, 0.6);
       transition: all 0.3s ease;
     }
 
     video:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 87, 51, 0.9);
     }
 
+    /* Sidebar toggle button (for mobile) */
+    .sidebar-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #ff5733;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 2;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #ff3b00;
+    }
+
+    /* Scrollbar styling */
     .channel-list::-webkit-scrollbar {
-      width: 8px;
+      width: 10px;
     }
 
     .channel-list::-webkit-scrollbar-thumb {
@@ -132,9 +169,26 @@
     }
 
     .channel-list::-webkit-scrollbar-track {
-      background-color: #2a2a3c;
+      background-color: #3b3b61;
     }
 
+    /* Animations for Channel List */
+    @keyframes fadeInChannelList {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .channel-list div {
+      animation: fadeInChannelList 0.5s ease-out;
+    }
+
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
       .main-container {
         flex-direction: column;
@@ -142,11 +196,10 @@
 
       .sidebar {
         width: 100%;
-        height: 200px;
+        height: 250px;
       }
 
       .content {
-        flex-grow: 1;
         width: 100%;
         padding: 10px;
       }
@@ -155,36 +208,26 @@
         width: 100%;
         max-width: none;
       }
+
+      .sidebar-toggle {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Login Message -->
-  <div class="login-message" id="loginMessage">
-    You are logged in as <strong id="username">User123</strong>. 
-    <a href="#" id="logoutBtn">Logout</a>
-  </div>
-
   <div class="main-container">
     <!-- Sidebar section for channel navigation -->
     <aside class="sidebar">
       <h2>Channels</h2>
       <nav id="channel-list" class="channel-list" aria-label="Channel List">
-        <div>Channel 1</div>
-        <div>Channel 2</div>
-        <div>Channel 3</div>
-        <div>Channel 4</div>
-        <div>Channel 5</div>
-        <div>Channel 6</div>
-        <div>Channel 7</div>
-        <div>Channel 8</div>
-        <div>Channel 9</div>
-        <div>Channel 10</div>
-        <!-- More channels can be added here -->
+        <!-- Channels will be inserted dynamically via JavaScript -->
       </nav>
     </aside>
 
-    <!-- Main content section for video playback -->
+    <!-- Content section for video playback -->
     <main class="content">
       <video id="video" controls autoplay aria-label="IPTV Video Player">
         Your browser does not support the video tag.
@@ -192,45 +235,43 @@
     </main>
   </div>
 
-  <!-- External JavaScript file -->
-  <script src="script.js" defer></script>
+  <!-- Sidebar toggle button for mobile view -->
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
 
   <script>
-    // Check if the user is logged in
-    function checkLoginStatus() {
-      const username = localStorage.getItem('username');
-      if (username) {
-        // Show the login message and set the username
-        document.getElementById('loginMessage').style.display = 'block';
-        document.getElementById('username').textContent = username;
-      }
+    // List of channel names (can be dynamically generated from an API or database)
+    const channels = [
+      'Channel 1', 'Channel 2', 'Channel 3', 'Channel 4', 'Channel 5',
+      'Channel 6', 'Channel 7', 'Channel 8', 'Channel 9', 'Channel 10',
+      'Channel 11', 'Channel 12', 'Channel 13', 'Channel 14', 'Channel 15',
+      'Channel 16', 'Channel 17', 'Channel 18', 'Channel 19', 'Channel 20',
+      'Channel 21', 'Channel 22', 'Channel 23', 'Channel 24', 'Channel 25'
+    ];
+
+    // Function to create channel elements dynamically
+    function populateChannels() {
+      const channelList = document.getElementById('channel-list');
+      channels.forEach(channel => {
+        const channelDiv = document.createElement('div');
+        const channelIcon = document.createElement('span');
+        channelIcon.classList.add('channel-icon');
+        channelIcon.innerHTML = '📺'; // You can replace this with an actual icon
+
+        channelDiv.appendChild(channelIcon);
+        channelDiv.textContent = channel;
+        channelList.appendChild(channelDiv);
+      });
     }
 
-    // Simulate login (this can be replaced with actual login functionality)
-    function login(username) {
-      localStorage.setItem('username', username);
-      checkLoginStatus();
-    }
+    // Call the function to populate channels on page load
+    window.onload = populateChannels;
 
-    // Simulate logout
-    function logout() {
-      localStorage.removeItem('username');
-      document.getElementById('loginMessage').style.display = 'none';
-    }
-
-    // Event listener for logout button
-    document.getElementById('logoutBtn').addEventListener('click', function(e) {
-      e.preventDefault();
-      logout();
+    // Sidebar toggle functionality (for mobile)
+    document.getElementById('sidebarToggle').addEventListener('click', function() {
+      const sidebar = document.querySelector('.sidebar');
+      const isVisible = sidebar.style.display === 'block';
+      sidebar.style.display = isVisible ? 'none' : 'block';
     });
-
-    // On page load, check the login status
-    window.onload = function() {
-      checkLoginStatus();
-    };
-
-    // Simulate login on page load (you can remove this later and use real login logic)
-    // login('User123');  // Uncomment to simulate a logged-in user
   </script>
 </body>
 </html>
