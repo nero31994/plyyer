@@ -74,7 +74,7 @@
     }
 
     /* Card-Like Channel Item Styling */
-    .channel-list div {
+    .channel-list button {
       display: flex;
       align-items: center;
       padding: 15px;
@@ -88,25 +88,20 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       margin-left: 10px;
       transform: translateX(-10px);
-    }
-
-    /* Hover Effects */
-    .channel-list div:hover {
-      background: #ff5733;
-      transform: translateX(10px);
-      box-shadow: 0 15px 25px rgba(255, 87, 51, 0.5);
+      border: none;
       color: white;
     }
 
-    /* Active channel effects */
-    .channel-list div:active {
-      transform: scale(0.98);
+    /* Hover Effects */
+    .channel-list button:hover {
+      background: #ff5733;
+      transform: translateX(10px);
+      box-shadow: 0 15px 25px rgba(255, 87, 51, 0.5);
     }
 
-    /* Channel icon */
-    .channel-icon {
-      margin-right: 15px;
-      font-size: 22px;
+    /* Active channel effects */
+    .channel-list button:active {
+      transform: scale(0.98);
     }
 
     /* Content (video player) area styles */
@@ -172,22 +167,6 @@
       background-color: #3b3b61;
     }
 
-    /* Animations for Channel List */
-    @keyframes fadeInChannelList {
-      0% {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .channel-list div {
-      animation: fadeInChannelList 0.5s ease-out;
-    }
-
     /* Mobile responsiveness */
     @media (max-width: 768px) {
       .main-container {
@@ -238,39 +217,52 @@
   <!-- Sidebar toggle button for mobile view -->
   <button class="sidebar-toggle" id="sidebarToggle">☰</button>
 
+  <script src="channels.js"></script>
   <script>
-    // List of channel names (can be dynamically generated from an API or database)
-    const channels = [
-      'Channel 1', 'Channel 2', 'Channel 3', 'Channel 4', 'Channel 5',
-      'Channel 6', 'Channel 7', 'Channel 8', 'Channel 9', 'Channel 10',
-      'Channel 11', 'Channel 12', 'Channel 13', 'Channel 14', 'Channel 15',
-      'Channel 16', 'Channel 17', 'Channel 18', 'Channel 19', 'Channel 20',
-      'Channel 21', 'Channel 22', 'Channel 23', 'Channel 24', 'Channel 25'
-    ];
+    document.addEventListener("DOMContentLoaded", () => {
+      const videoElement = document.getElementById("video");
+      const channelList = document.getElementById("channel-list");
+      const player = new shaka.Player(videoElement);
 
-    // Function to create channel elements dynamically
-    function populateChannels() {
-      const channelList = document.getElementById('channel-list');
-      channels.forEach(channel => {
-        const channelDiv = document.createElement('div');
-        const channelIcon = document.createElement('span');
-        channelIcon.classList.add('channel-icon');
-        channelIcon.innerHTML = '📺'; // You can replace this with an actual icon
+      // Function to load a selected channel
+      async function loadChannel(channel) {
+        try {
+          if (channel.drm) {
+            player.configure({
+              drm: {
+                clearKeys: {
+                  [channel.drm.kid]: channel.drm.key,
+                },
+              },
+            });
+          } else {
+            player.configure({ drm: {} }); // Reset DRM for non-DRM content
+          }
 
-        channelDiv.appendChild(channelIcon);
-        channelDiv.textContent = channel;
-        channelList.appendChild(channelDiv);
-      });
-    }
+          await player.load(channel.url);
+          console.log(`Now playing: ${channel.name}`);
+        } catch (error) {
+          console.error(`Error loading channel: ${channel.name}`, error);
+        }
+      }
 
-    // Call the function to populate channels on page load
-    window.onload = populateChannels;
+      // Function to generate channel buttons dynamically
+      function createChannelButtons() {
+        channels.forEach((channel) => {
+          const button = document.createElement("button");
+          button.textContent = channel.name;
+          button.addEventListener("click", () => loadChannel(channel));
+          channelList.appendChild(button);
+        });
+      }
 
-    // Sidebar toggle functionality (for mobile)
-    document.getElementById('sidebarToggle').addEventListener('click', function() {
-      const sidebar = document.querySelector('.sidebar');
-      const isVisible = sidebar.style.display === 'block';
-      sidebar.style.display = isVisible ? 'none' : 'block';
+      // Initialize player with the first channel and generate buttons
+      function initializePlayer() {
+        createChannelButtons();
+        loadChannel(channels[0]); // Auto-load the first channel by default
+      }
+
+      initializePlayer();
     });
   </script>
 </body>
