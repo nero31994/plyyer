@@ -39,6 +39,7 @@
       font-size: 18px;
       font-weight: bold;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      display: none; /* Hide by default */
     }
 
     .login-message a {
@@ -159,9 +160,9 @@
 </head>
 <body>
   <!-- Login Message -->
-  <div class="login-message">
-    You are logged in as <strong>User123</strong>. 
-    <a href="#">Logout</a>
+  <div class="login-message" id="loginMessage">
+    You are logged in as <strong id="username">User123</strong>. 
+    <a href="#" id="logoutBtn">Logout</a>
   </div>
 
   <div class="main-container">
@@ -193,5 +194,43 @@
 
   <!-- External JavaScript file -->
   <script src="script.js" defer></script>
+
+  <script>
+    // Check if the user is logged in
+    function checkLoginStatus() {
+      const username = localStorage.getItem('username');
+      if (username) {
+        // Show the login message and set the username
+        document.getElementById('loginMessage').style.display = 'block';
+        document.getElementById('username').textContent = username;
+      }
+    }
+
+    // Simulate login (this can be replaced with actual login functionality)
+    function login(username) {
+      localStorage.setItem('username', username);
+      checkLoginStatus();
+    }
+
+    // Simulate logout
+    function logout() {
+      localStorage.removeItem('username');
+      document.getElementById('loginMessage').style.display = 'none';
+    }
+
+    // Event listener for logout button
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      logout();
+    });
+
+    // On page load, check the login status
+    window.onload = function() {
+      checkLoginStatus();
+    };
+
+    // Simulate login on page load (you can remove this later and use real login logic)
+    // login('User123');  // Uncomment to simulate a logged-in user
+  </script>
 </body>
 </html>
